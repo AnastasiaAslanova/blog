@@ -1,0 +1,6 @@
+<div style="text-align: center">
+    <button wire:click="dicrement">-</button>
+    <button wire:click="increment">+</button>
+    <h1>{{ $count }}</h1>
+    @livewireScripts
+</div>

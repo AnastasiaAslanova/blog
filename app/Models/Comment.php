@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Post extends Model
+use Carbon\Carbon;
+class Comment extends Model
 {
+
     use HasFactory;
 
-    public function comments()
+    public function user()
     {
-        return $this->hasMany(Comment::class)->orderByDesc('created_at');
+        return $this->hasOne(User::class,'id','user_id');
     }
 }
+

@@ -17,4 +17,9 @@ Route::view('/', 'home');
 
 Route::get('post/create', \App\Http\Livewire\PostCreate::class);
 Route::get('post/{slug}', \App\Http\Livewire\Post::class);
+Route::get('/counter', \App\Http\Livewire\Counter::class);
 
+\Illuminate\Support\Facades\Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post(\Illuminate\Auth\Events\Logout::class);

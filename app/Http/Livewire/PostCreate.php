@@ -25,6 +25,7 @@ class PostCreate extends Component
         $this->post->slug = Str::slug($this->post->title);
         $this->post->save();
         $this->saveSuccess = true;
+       $this->post = new Post();
     }
 
     public function render()

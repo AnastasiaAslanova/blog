@@ -8,8 +8,18 @@
         <a class="flex order-first lg:order-none lg:w-1/5 title-font font-bold items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
             BLOG
         </a>
+        @guest
         <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-            <a href="#_" class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">Login</a>
+            <a href="{{route('login')}}" class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">Login</a>
         </div>
+        @endguest
+        @auth
+            <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0" type="submit">Logout</button>
+                </form>
+            </div>
+        @endauth
     </div>
 </header>
