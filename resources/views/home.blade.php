@@ -6,16 +6,12 @@
         <h1 class="text-4xl mt-32 text-center tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
             Welcome to The Blog
         </h1>
-
-        <div class="mt-10 max-w-xl mx-auto">
-            @foreach(\App\Models\Post::all() as $post)
-                <div class="border-b mb-5 pb-5 border-gray-200">
-                    <a href="/post/{{ $post->slug }}" class="text-2xl font-bold mb-2">{{ $post->title }}</a>
-                    <p>{{ Str::limit($post->body, 100) }}</p>
-                </div>
-            @endforeach
+        @auth
+        <div class="lg:w-1/6 mx-auto" style="cursor: pointer">
+            <a href="{{route('createPost')}}" class="inline-flex items-center bg-blue-200 border-0 py-1 px-3 focus:outline-none hover:bg-blue-300 rounded text-base mt-4 md:mt-0" type="submit">Create post</a>
+            @endauth
         </div>
+        @livewire('posts-list', ['posts' => \App\Models\Post::all()])
     </div>
-
 @endsection
 
