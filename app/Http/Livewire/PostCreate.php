@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -10,6 +11,7 @@ class PostCreate extends Component
 {
     public $saveSuccess = false;
     public $post;
+    public $savePostSuccess;
 
     protected $rules = [
         'post.title' => 'required|min:6',
@@ -21,10 +23,11 @@ class PostCreate extends Component
     }
 
     public function savePost(){
-        $this->post->user_id = 1;
+        $this->post->user_id = Auth::id();
         $this->post->slug = Str::slug($this->post->title);
         $this->post->save();
         $this->saveSuccess = true;
+        $this->savePostSuccess = 'Post was posted!';
        $this->post = new Post();
     }
 

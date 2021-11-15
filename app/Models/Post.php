@@ -13,4 +13,8 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class)->orderByDesc('created_at');
     }
+    public function autor()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

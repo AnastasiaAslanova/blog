@@ -11,7 +11,7 @@
             <a href="{{route('createPost')}}" class="inline-flex items-center bg-blue-200 border-0 py-1 px-3 focus:outline-none hover:bg-blue-300 rounded text-base mt-4 md:mt-0" type="submit">Create post</a>
             @endauth
         </div>
-        @livewire('posts-list', ['posts' => \App\Models\Post::all()])
+        @livewire('posts-list', ['posts' => \App\Models\Post::orderByDesc('updated_at')->get()])
     </div>
 @endsection
 

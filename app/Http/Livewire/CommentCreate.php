@@ -12,24 +12,30 @@ class CommentCreate extends Component
     public $saveSuccess = false;
     public $comment;
     public $post;
+    public $saveCommentSuccess;
+    public $isActive = true;
 
     protected $rules = [
         'comment.content' => 'required|min:6',
     ];
 
-    public function mount($post){
-        $this->post = $post;
-        $this->comment = new Comment();
-    }
+//    public function mount(){
+//        $this->comment = new Comment();
+//    }
 
     public function saveComment(){
-        $this->comment->post_id = $this->post->id;
-        $this->comment->user_id = Auth::id();
-        $this->post->comments()->save($this->comment);
-        $this->emit('refreshComments', $this->post->id);
-//        $this->comment->refresh();
-//        $this->comment->save();
+        $comment = new Comment([
+            'post_id' => $this->post->id,
+            'user_id' => Auth::id(),
+            'content' => $this->comment
+        ]);
+//        $this->comment->post_id = $this->post->id;
+//        $this->comment->user_id = Auth::id();
+        $comment->save();
+        $this->emit('refreshComments', $comment->post_id);
+        $this->saveCommentSuccess = 'Comment was posted!';
         $this->saveSuccess = true;
+        $this->comment = '';
     }
 
     public function render()

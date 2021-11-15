@@ -2,27 +2,37 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Post;
 use Livewire\Component;
 
 class Comments extends Component
 {
-    private $comments;
+    public $post;
+//    private $comments;
 
     protected $listeners = ['refreshComments'];
 
-    public function mount($comments)
-    {
-        $this->comments = $comments;
-    }
+//    public function mount($comments)
+//    {
+//        var_dump($comments);die;
+//        $this->comments = $comments;
+//    }
 
-    public function refreshComments(\App\Models\Post $post)
+    public function refreshComments(Post $post)
     {
-        $this->comments = $post->comments;
+//        var_dump($post->comments()->count());die;
+        $this->post = $post;
+//        return $this->render();
+//        $this->comments = $post->comments;
+//        $this->render();
+//        refresh();
+
     }
 
     public function render()
     {
-        return view('livewire.comments', ['comments' => $this->comments]);
+//        var_dump($this->comments);die();
+        return view('livewire.comments', ['post' => $this->post]);
 
     }
 }
