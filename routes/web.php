@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\Admin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +23,6 @@ Route::get('/counter', \App\Http\Livewire\Counter::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post(\Illuminate\Auth\Events\Logout::class);
+Route::get('/user/list',\App\Http\Livewire\UsersList::class)->name('userList')->middleware(Admin::class);
+Route::match(['get', 'post'],'/add/user',\App\Http\Livewire\AddUser::class)->name('addUser')->middleware(Admin::class);
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DeleteComment extends Component
@@ -10,8 +11,8 @@ class DeleteComment extends Component
 
     public function delete()
     {
-        if($this->comment) {
-//        var_dump($post);die;
+        if(Auth::user()->is_admin)
+        {
             $this->comment->delete();
 //        $post->refresh();
             $this->emit('refreshComments', $this->comment->post_id);

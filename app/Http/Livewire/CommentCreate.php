@@ -19,10 +19,6 @@ class CommentCreate extends Component
         'comment.content' => 'required|min:6',
     ];
 
-//    public function mount(){
-//        $this->comment = new Comment();
-//    }
-
     public function saveComment(){
         $comment = new Comment([
             'post_id' => $this->post->id,

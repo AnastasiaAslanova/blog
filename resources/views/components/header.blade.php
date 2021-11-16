@@ -4,6 +4,9 @@
             <a href="/" class="mr-5 hover:text-gray-900">Home</a>
             <a href="/blog" class="mr-5 hover:text-gray-900">Blog</a>
             <a href="/about" class="mr-5 hover:text-gray-900">About</a>
+            @if(Auth::user() && Auth::user()->is_admin)
+            <a href="{{route('userList')}}" class="mr-5 hover:text-gray-900">Users</a>
+            @endif
         </nav>
         <a class="flex order-first lg:order-none lg:w-1/5 title-font font-bold items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
             BLOG

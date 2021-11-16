@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DeletePost extends Component
@@ -10,8 +11,10 @@ class DeletePost extends Component
 
     public function delete()
     {
-        $this->post->delete();
-        return redirect()->to('/');
+        if (Auth::user()->is_admin) {
+            $this->post->delete();
+            return redirect()->to('/');
+        }
     }
 
     public function render()
